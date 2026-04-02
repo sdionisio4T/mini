@@ -4,8 +4,7 @@
     {
       "name": "Web (Vite)",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "cwd": "web",
+      "runtimeArgs": ["run", "dev", "--prefix", "web"],
       "port": 5173
     }
   ]
