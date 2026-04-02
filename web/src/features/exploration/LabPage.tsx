@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { MidiConnectionPanel } from '../midi/MidiConnectionPanel';
 import { MidiMonitor } from '../midi/MidiMonitor';
 import { FilterPanel } from '../synth-ui/panels/FilterPanel';
+import { OscillatorsPanel } from '../synth-ui/panels/OscillatorsPanel';
+import { EnvelopesPanel } from '../synth-ui/panels/EnvelopesPanel';
+import { LfoPanel } from '../synth-ui/panels/LfoPanel';
+import { FxPanel } from '../synth-ui/panels/FxPanel';
 import { CalibrationWizard } from '../midi/mapping/CalibrationWizard';
 
 type Tab = 'paneles' | 'calibrar' | 'monitor';
@@ -30,7 +34,15 @@ export function LabPage() {
         ))}
       </div>
 
-      {tab === 'paneles' && <FilterPanel />}
+      {tab === 'paneles' && (
+        <div className="space-y-4">
+          <OscillatorsPanel />
+          <FilterPanel />
+          <EnvelopesPanel />
+          <LfoPanel />
+          <FxPanel />
+        </div>
+      )}
       {tab === 'calibrar' && <CalibrationWizard />}
       {tab === 'monitor' && <MidiMonitor />}
     </div>
