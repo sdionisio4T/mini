@@ -48,6 +48,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Link to="/laboratorio" className={`text-sm transition-colors ${
               location.pathname === '/laboratorio' ? 'text-indigo-600 font-medium' : 'text-gray-500 hover:text-gray-800'
             }`}>Lab</Link>
+            <Link to="/patches" className={`text-sm transition-colors ${
+              location.pathname.startsWith('/patches') ? 'text-indigo-600 font-medium' : 'text-gray-500 hover:text-gray-800'
+            }`}>Patches</Link>
             <Link to="/perfil" className={`text-sm transition-colors ${
               location.pathname === '/perfil' ? 'text-indigo-600 font-medium' : 'text-gray-500 hover:text-gray-800'
             }`}>

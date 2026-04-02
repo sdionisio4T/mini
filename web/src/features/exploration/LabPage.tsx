@@ -7,8 +7,9 @@ import { EnvelopesPanel } from '../synth-ui/panels/EnvelopesPanel';
 import { LfoPanel } from '../synth-ui/panels/LfoPanel';
 import { FxPanel } from '../synth-ui/panels/FxPanel';
 import { CalibrationWizard } from '../midi/mapping/CalibrationWizard';
+import { AudioInputPanel } from '../audio/AudioInputPanel';
 
-type Tab = 'paneles' | 'calibrar' | 'monitor';
+type Tab = 'paneles' | 'calibrar' | 'audio' | 'monitor';
 
 export function LabPage() {
   const [tab, setTab] = useState<Tab>('paneles');
@@ -23,13 +24,18 @@ export function LabPage() {
       <MidiConnectionPanel />
 
       {/* Tabs */}
-      <div className="flex gap-1 bg-gray-100 p-1 rounded-lg">
-        {(['paneles', 'calibrar', 'monitor'] as Tab[]).map(t => (
+      <div className="grid grid-cols-4 gap-1 bg-gray-100 p-1 rounded-lg">
+        {([
+          ['paneles', 'Paneles'],
+          ['calibrar', 'Calibrar'],
+          ['audio', 'Audio'],
+          ['monitor', 'MIDI'],
+        ] as [Tab, string][]).map(([t, label]) => (
           <button key={t} onClick={() => setTab(t)}
-            className={`flex-1 py-1.5 text-sm font-medium rounded-md transition-colors capitalize ${
+            className={`py-1.5 text-sm font-medium rounded-md transition-colors ${
               tab === t ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
             }`}>
-            {t === 'paneles' ? 'Paneles' : t === 'calibrar' ? 'Calibrar' : 'Monitor MIDI'}
+            {label}
           </button>
         ))}
       </div>
@@ -44,6 +50,7 @@ export function LabPage() {
         </div>
       )}
       {tab === 'calibrar' && <CalibrationWizard />}
+      {tab === 'audio' && <AudioInputPanel />}
       {tab === 'monitor' && <MidiMonitor />}
     </div>
   );
